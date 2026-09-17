@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Emprendedurismo — Repaso interactivo</title>
+<meta name="description" content="Sitio estático de repaso: cuestionario aleatorio con refuerzo, estadísticas locales y biblioteca de PDFs.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#/inicio">Quiz Emprendedurismo</a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#/inicio" data-nav="inicio">Inicio</a>
+      <a href="#/quiz" data-nav="quiz">Quiz</a>
+      <a href="#/biblioteca" data-nav="biblioteca">Biblioteca</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ============ INICIO ============ -->
+  <section id="view-inicio" class="view">
+    <div class="hero">
+      <div>
+        <h1>Repaso de Emprendedurismo</h1>
+        <p class="muted">Cuestionario aleatorio con refuerzo de fallos. Todo se guarda en tu navegador (localStorage). Funciona offline abriendo este archivo.</p>
+        <p class="muted small" id="bankInfo"></p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn primary" href="#/quiz">Empezar quiz</a>
+        <a class="btn" href="#/biblioteca">Ver PDFs</a>
+      </div>
+    </div>
+
+    <div class="grid cards" id="statCards" aria-live="polite"></div>
+
+    <div class="grid two">
+      <div class="card">
+        <h2>Progreso por intento</h2>
+        <canvas id="chartHistory" height="220" aria-label="Gráfica de historial"></canvas>
+        <div id="chartHistoryFallback" class="bars" hidden></div>
+      </div>
+      <div class="card">
+        <h2>Acierto por documento</h2>
+        <canvas id="chartDocs" height="220" aria-label="Gráfica por documento"></canvas>
+        <div id="chartDocsFallback" class="bars" hidden></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Nuevo intento</h2>
+      <div class="form-row">
+        <label>Documento
+          <select id="filtroDoc"></select>
+        </label>
+        <label>Cantidad
+          <select id="filtroNum">
+            <option value="10">10 preguntas</option>
+            <option value="15" selected>15 preguntas</option>
+            <option value="20">20 preguntas</option>
+            <option value="all">Todas (filtradas)</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="soloFalladas"> Solo repasar falladas</label>
+      </div>
+      <div class="form-row">
+        <button class="btn primary" id="btnStart">Iniciar</button>
+        <button class="btn" id="btnRetryFails">Repasar falladas</button>
+      </div>
+      <p class="muted small">El orden de preguntas y opciones es aleatorio. Las que más fallas aparecen con más frecuencia.</p>
+    </div>
+
+    <div class="card">
+      <div class="row-between">
+        <h2>Historial</h2>
+        <button class="btn danger small" id="btnClear">Limpiar datos</button>
+      </div>
+      <div class="table-wrap">
+        <table id="historyTable">
+          <thead><tr><th>Fecha</th><th>Aciertos</th><th>%</th><th>Docs</th><th>Tiempo</th></tr></thead>
+          <tbody><tr><td colspan="5" class="muted">Sin intentos todavía.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="view-quiz" class="view" hidden>
+    <div id="quizSetup" class="card">
+      <h2>Configurar intento</h2>
+      <p class="muted">Elige un filtro en Inicio o usa los valores por defecto y pulsa Iniciar.</p>
+      <button class="btn primary" id="btnStart2">Iniciar quiz</button>
+    </div>
+    <div id="quizPlay" hidden>
+      <div class="quiz-top">
+        <div class="progress"><div id="progressBar"></div></div>
+        <p class="muted small" id="quizMeta"></p>
+      </div>
+      <article class="card" aria-live="polite">
+        <p class="pill" id="qTag"></p>
+        <h2 id="qText"></h2>
+        <div id="qOpts" class="opts"></div>
+        <div id="qFeedback" class="feedback" hidden></div>
+        <div class="form-row">
+          <button class="btn primary" id="btnNext" disabled>Siguiente</button>
+          <button class="btn" id="btnQuit">Terminar</button>
+        </div>
+      </article>
+    </div>
+    <div id="quizResult" class="card" hidden></div>
+  </section>
+
+  <!-- ============ BIBLIOTECA ============ -->
+  <section id="view-biblioteca" class="view" hidden>
+    <h1>Biblioteca</h1>
+    <p class="muted">Abre el PDF en el navegador o descárgalo. Archivos locales, funcionan offline.</p>
+    <div id="docList" class="grid"></div>
+  </section>
+</main>
+
+<footer class="wrap footer muted small">Quiz Emprendedurismo | Periodo II</footer>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/questions-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
