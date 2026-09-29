@@ -185,7 +185,7 @@
       else if (i === pos) btns[i].classList.add("wrong");
     }
     var s = getStats(q.id);
-    if (good) { s.hits++; s.streak++; session.ok++; } else { s.fails++; s.streak = 0; }
+    if (good) { s.hits++; s.streak++; s.fails = 0; session.ok++; } else { s.fails++; s.streak = 0; }
     save(LS_STATS, stats);
     session.answers.push({ id: q.id, doc: q.doc, ok: good, n: session.idx + 1 });
     var fb = $("qFeedback");
