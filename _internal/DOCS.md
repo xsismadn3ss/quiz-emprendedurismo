@@ -37,7 +37,7 @@ Basados en JHU-CTEI, UT Austin, ACS/NBME, Haladyna et al. 2002 y guía UNED:
 9. Ortografía completa (tildes y ñ) en preguntas, opciones y explicaciones.
 
 ## localStorage
-- `eq_stats_v1`: `{ [qid]: { fails, hits, streak } }` — `streak` = aciertos consecutivos (amortigua peso).
+- `eq_stats_v1`: `{ [qid]: { fails, hits, streak } }` — `streak` = aciertos consecutivos (amortigua peso). Al acertar una pregunta, `fails` se reinicia a 0 y sale del listado "por reforzar".
 - `eq_history_v1`: `[{ fecha ISO, total, aciertos, pct, porDoc: {DOC:{ok,tot}}, docs, seg }]`
 - `eq_prefs_v1`: `{ doc, num, fails }`
 - Botón Limpiar: `removeItem` de stats + history (prefs se conservan). Doble `confirm()`.
@@ -46,7 +46,7 @@ Basados en JHU-CTEI, UT Austin, ACS/NBME, Haladyna et al. 2002 y guía UNED:
 ```
 w(q) = 1 + fails*2.5 - min(streak,3)*0.8 + (dificultad==trampa ? 0.5 : 0), min 0.2
 ```
-`pickQuestions(doc, num, onlyFails)`: filtra por doc/fallos → ordena desc por `w` → toma top-N → `shuffle` final. Además cada intento re-mezcla opciones con Fisher-Yates y recalcula índice correcto. Efecto: falladas suben, rachas buenas bajan, 20% de variedad por el corte top-N + shuffle.
+`pickQuestions(doc, num, onlyFails)`: filtra por doc/fallos → ordena desc por `w` → toma top-N → `shuffle` final. Además cada intento re-mezcla opciones con Fisher-Yates y recalcula índice correcto. Efecto: falladas suben, rachas buenas bajan, 20% de variedad por el corte top-N + shuffle. Un acierto resetea `fails=0`, por lo que la pregunta deja de aparecer en "Solo repasar falladas" y baja del contador "por reforzar".
 
 ## Router y vistas
 - Hash router: `#/inicio`, `#/quiz`, `#/biblioteca`. `router()` oculta/muestra `<section>` y llama `renderHome()` / `renderDocs()`.
