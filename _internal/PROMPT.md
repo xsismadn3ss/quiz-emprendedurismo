@@ -5,7 +5,7 @@ Estás manteniendo `sitio-quiz/`, sitio 100% estático (HTML+CSS+JS vanilla) que
 Reglas duras:
 - NO uses `fetch`, `import`, `type="module"` ni CDN. Todo por `<script src>` clásico y rutas relativas.
 - NO agregues dependencias ni build. Solo edita `index.html`, `css/styles.css`, `js/app.js`, `js/questions-data.js`.
-- El banco es `var QUESTION_BANK` en `js/questions-data.js`: edítalo como JSON, no cambies el `var`. IDs únicos `DOC-###`, `respuesta` es índice 0-based DESPUÉS de las opciones en su orden original (app.js re-mezcla solo). No renombres IDs existentes (rompe stats guardados).
+- El banco es `var QUESTION_BANK` en `js/questions-data.js`: edítalo como JSON, no cambies el `var`. IDs únicos `DOC-###`, `respuesta` es índice 0-based DESPUÉS de las opciones en su orden original (app.js re-mezcla solo). No renombres IDs existentes (rompe stats guardados). Documentos: `PV1|PV2|MKT8|COST|EJPV|SEG1|SEG2|TC`.
 - Al crear preguntas respeta los 9 criterios de redacción de `_internal/DOCS.md` (enunciado autocontenido, sin trivia del documento, sin negativos, distractores plausibles, mezcla Bloom, ortografía completa).
 - Claves localStorage versionadas: `eq_stats_v1`, `eq_history_v1`, `eq_prefs_v1`. Si cambias el esquema, sube versión.
 - Chart.js está vendorizado en `js/vendor/chart.umd.min.js` (v4.4.1). Mantén fallback CSS si falta.

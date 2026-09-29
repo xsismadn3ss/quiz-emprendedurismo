@@ -21,7 +21,7 @@ La pastilla de cada pregunta muestra `tipo · dificultad` (sin ID). El resultado
   "explicacion": "...", "fuente": "PV2 - paso 3", "dificultad": "detalle"
 }
 ```
-Conteo actual: PV1 20, PV2 35, MKT8 20, COST 20, EJPV 10, SEG1 12, SEG2 12 = 129.
+Conteo actual: PV1 20, PV2 35, MKT8 20, COST 20, EJPV 10, SEG1 12, SEG2 12, TC 24 = 153.
 IDs estables: no renombrar ni reutilizar (rompería `eq_stats_v1` guardado).
 
 ### Criterios de redacción de preguntas (obligatorios)

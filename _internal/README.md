@@ -15,14 +15,15 @@ sitio-quiz/
 ├── js/questions-data.js        # var DOCS + var QUESTION_BANK (editar como JSON)
 ├── js/app.js                   # Router, quiz, localStorage, stats, charts, biblioteca
 ├── js/vendor/chart.umd.min.js  # Chart.js 4.4.1 vendorizado (jsdelivr)
-└── pdfs/*.pdf                  # Copias con nombres slug (01-... a 07-...)
+└── pdfs/*.pdf                  # Copias con nombres slug (01-... a 08-...)
 ```
 
 ## 3. Cómo agregar preguntas
 1. Abre `js/questions-data.js`.
 2. No cambies `var QUESTION_BANK =` ni `var DOCS =`. Solo agrega objetos.
-3. Campos obligatorios: `id` (DOC-### único), `doc` (PV1|PV2|MKT8|COST|EJPV|SEG1|SEG2), `tema`, `tipo` (multiple|vf), `pregunta`, `opciones` (4 para multiple, ["Verdadero","Falso"] para vf), `respuesta` (índice 0-based), `explicacion`, `fuente`, `dificultad` (base|detalle|trampa).
+3. Campos obligatorios: `id` (DOC-### único), `doc` (PV1|PV2|MKT8|COST|EJPV|SEG1|SEG2|TC), `tema`, `tipo` (multiple|vf), `pregunta`, `opciones` (4 para multiple, ["Verdadero","Falso"] para vf), `respuesta` (índice 0-based), `explicacion`, `fuente`, `dificultad` (base|detalle|trampa).
 4. Para nuevo PDF: agrega entrada en `DOCS` con `id`, `titulo`, `archivo: "pdfs/xx-nombre.pdf"`, `descripcion`; copia el PDF a `pdfs/`; agrega sus preguntas con ese `doc`.
+   - `08-taller-de-costos.pdf` se generó desde un PowerPoint original con `soffice --headless --convert-to pdf`; el sitio solo incluye el PDF.
 
 ## 4. Cómo actualizar Chart.js
 - Origen: https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js
